@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.how2java.tmall.mapper.PropertyMapper">
+
+    <!--拿到一个分类的所有属性-->
+    <select id="getPropertyListByCategoryId" parameterType="_int" resultType="Property">
+        select * from property where cid = #{cid}
+    </select>
+
+    <select id="getPropertyListByCategoryIdOnePage"  resultType="Property">
+        select * from property where cid=#{cid} limit #{start},#{count}
+    </select>
+
+    <select id="total" resultType="int">
+        select count(*) from property where cid =#{cid}
+    </select>
+
+
+    <insert id="addProperty" parameterType="Property" keyProperty="id" useGeneratedKeys="true">
+        insert into property (cid, name)values(#{cid},#{name})
+    </insert>
+
+    <select id="getPropertyById" parameterType="int" resultType="Property">
+        select * from property where id = #{id}
+    </select>
+
+    <update id="updateProperty" parameterType="Property">
+        update property set name=#{name} where id=#{id}
+    </update>
+
+    <delete id="deleteProperty" parameterType="int">
+        delete  from property where id = #{id}
+    </delete>
+</mapper>

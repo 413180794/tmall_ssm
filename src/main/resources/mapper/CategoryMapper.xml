@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.how2java.tmall.mapper.CategoryMapper">
+    <!--查询所有的Category数据-->
+    <!--id是命名空间中唯一的标识符，可被用来代表这条语句,或者传入page对象，实现分页功能-->
+    <select id="getAllCategory" resultType="Category">
+        select id ,`name` from category order by id desc
+    </select>
+
+    <select id="getOnePageCategory" resultType="Category">
+        select id ,`name` from category order by id desc
+        <if test="null!=start and null!=count">
+            limit #{start},#{count}
+        </if>
+    </select>
+
+
+    <select id="total" resultType="int">
+        select count(*) from category
+    </select>
+
+    <!--根据Category的主键获得数据库中的对应分类-->
+    <select id="getOneCategoryById" resultType="Category">
+        select id,`name` from category where id = #{id}
+    </select>
+
+    <!--增加一项分类
+       注意这里使用了keyProperty userGeneratedKeys 如果不使用则拿不到c的id
+    -->
+    <insert id="addCategory" parameterType="Category" keyProperty="id" useGeneratedKeys="true">
+        insert into category values (null,#{name})
+    </insert>
+
+    <!--删除一个分类-->
+    <delete id="deleteCategory" parameterType="Category">
+        delete from category where id=#{id}
+    </delete>
+
+    <!--更新一个分类-->
+    <update id="updateCategory" >
+      update category set name = #{name} where id=#{id}
+    </update>
+
+</mapper>
