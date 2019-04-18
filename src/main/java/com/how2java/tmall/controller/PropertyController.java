@@ -5,7 +5,7 @@ import com.how2java.tmall.pojo.Property;
 import com.how2java.tmall.service.CategoryService;
 import com.how2java.tmall.service.PropertyService;
 import com.how2java.tmall.util.Page;
-import org.apache.ibatis.annotations.Result;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

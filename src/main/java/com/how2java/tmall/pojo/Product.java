@@ -15,8 +15,6 @@ public class Product {
 
     // 非数据库字段 对应的分类
     private Category category;
-
-
     public int getId() {
         return id;
     }
